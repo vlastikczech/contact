@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Contact",
-    "slug": "contact",
+    "name": "Patient 31",
+    "slug": "patient31",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
@@ -26,6 +26,10 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.phxdevs.patient31",
+      "versionCode": 1
     }
   }
 }
