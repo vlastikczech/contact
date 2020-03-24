@@ -76,8 +76,12 @@ export default class DailyStats extends Component {
 
 const styles = StyleSheet.create({
     statsContainer: {
+        borderBottomWidth: 1,
+        borderColor: 'rgba(0, 0, 0, 0.12)',
+        padding: 16,
         display: 'flex',
         flexDirection: 'row',
+        backgroundColor: 'rgb(255, 255, 255)',
         justifyContent: 'space-between',
         width: '100%'
     },
@@ -93,9 +97,9 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color: 'white',
         borderRadius: 50,
-        width: 60,
-        height: 60,
-        lineHeight: 60,
+        width: 40,
+        height: 40,
+        lineHeight: 40,
         textAlign: 'center'
     },
     digitalText: {
@@ -103,9 +107,9 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color: 'white',
         borderRadius: 50,
-        width: 60,
-        height: 60,
-        lineHeight: 60,
+        width: 40,
+        height: 40,
+        lineHeight: 40,
         textAlign: 'center'
     }
 
