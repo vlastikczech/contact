@@ -26,23 +26,17 @@ export default function HomeScreen() {
             <Text style={styles.counterHeader}>
               Human Connections: 
             </Text>
-            <Text style={styles.getStartedText}>{`Help control the spread!\nEach day, keep track of how many unique people intersect your 6 ft bubble.\nUpdate your count regularly. BUT... keep the count low!`}</Text>
-            {/* <Tooltip width={225} height={-1} popover={<Text>Keep your distance to stop the spread. 6 feet apart is recommended. Add one to this count for each unique person that crosses that 6ft bubble. Don't count people you live with.</Text>}>
-            <Icon name='question-circle' type='font-awesome' size={24} />
-            </Tooltip> */}
+            <Text style={styles.getStartedText}>{`Slow the spread!\nLOWER IS BETTER`}</Text>
           </View>
         <ContactCounter name="in_person"/>
 
-        <Divider style={{ backgroundColor: 'blue' }} />
+        <Divider style={styles.divider} />
 
         <View style={styles.counterView}>
           <Text style={styles.counterHeader}>
             Digital Connections: 
           </Text>
-          <Text style={styles.getStartedText}>{`But don't disconnect!\nAlso keep track of your meaningful digital connections each day. Call or text a friend or family member.`}</Text>
-          {/* <Tooltip width={225} height={-1} popover={<Text>Stay in touch with your friends and family. Give them a call. Send them a note.</Text>}>
-          <Icon name='question-circle' type='font-awesome' size={24} />
-          </Tooltip> */}
+          <Text style={styles.getStartedText}>{`Call a friend.\nText a family member.\nHIGHER IS BETTER`}</Text>
         </View>
         <ContactCounter name="digital"/>
         </View>
@@ -64,18 +58,6 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
   },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  },
   getStartedContainer: {
     alignItems: 'center',
     marginHorizontal: 50
@@ -86,9 +68,14 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     textAlign: 'center'
   },
+  divider: {
+    marginTop: 40,
+    backgroundColor: 'blue'
+  },
   counterHeader: {
     fontSize: 24,
-    textAlign: 'center'
+    textAlign: 'center',
+    marginTop: 15
   },
   counterText: {
     fontSize: 80,
@@ -102,7 +89,7 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   counterView: {
-    paddingBottom: 15,
+    paddingBottom: 5,
     paddingHorizontal: 10,
     textAlign: 'center'
   }
