@@ -6,13 +6,14 @@ import { RectButton, ScrollView } from 'react-native-gesture-handler';
 
 import HistoryStats from '../components/HistoryStats'
 import DailyStats from '../components/DailyStats'
-import ThreeDayStats from '../components/ThreeDayStats'
+import MultiDayStats from '../components/MultiDayStats'
 
 export default function StatsScreen(props) {
   return (
     <View>
       <DailyStats nav={props.navigation}/>
-      <ThreeDayStats nav={props.navigation}/>
+      <MultiDayStats nav={props.navigation} title='3 days:' days={3}/>
+      <MultiDayStats nav={props.navigation} title='10 days:' days={10}/>
       <HistoryStats/>
     </View>
   );
