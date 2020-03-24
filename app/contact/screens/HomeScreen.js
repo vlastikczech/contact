@@ -1,6 +1,6 @@
 import React, { useState, useEffect, setState } from 'react';
 import { Image, Platform, StyleSheet,TouchableOpacity, View, AsyncStorage } from 'react-native';
-import { Tooltip, Text, Button, Icon, Divider } from 'react-native-elements';
+import { Tooltip, Text, Button, Icon, Divider  } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
 import * as WebBrowser from 'expo-web-browser';
@@ -33,7 +33,7 @@ export default function HomeScreen() {
           </View>
         <ContactCounter name="in_person"/>
 
-        <Divider />
+        <Divider style={{ backgroundColor: 'blue' }} />
 
         <View style={styles.counterView}>
           <Text style={styles.counterHeader}>
