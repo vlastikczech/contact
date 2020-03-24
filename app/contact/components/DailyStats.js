@@ -92,20 +92,20 @@ const styles = StyleSheet.create({
         backgroundColor: '#ed0000',
         fontSize: 30,
         color: 'white',
-        borderRadius: '50%',
-        width: '60px',
-        height: '60px',
-        lineHeight: '60px',
+        borderRadius: 50,
+        width: 60,
+        height: 60,
+        lineHeight: 60,
         textAlign: 'center'
     },
     digitalText: {
         backgroundColor: '#14ed00',
         fontSize: 30,
         color: 'white',
-        borderRadius: '50%',
-        width: '60px',
-        height: '60px',
-        lineHeight: '60px',
+        borderRadius: 50,
+        width: 60,
+        height: 60,
+        lineHeight: 60,
         textAlign: 'center'
     }
 
