@@ -61,7 +61,10 @@ export default class HistoryStats extends Component {
             ...itm
         }));
 
-        // TODO SORT LIST
+        // sorts the list
+        newList.sort(function(a, b) { 
+            return a.date < b.date;
+        })
     
         return newList
     }
