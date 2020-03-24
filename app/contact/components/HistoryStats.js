@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import { View, AsyncStorage, Text, StyleSheet, FlatList, SafeAreaView, ScrollView} from 'react-native'
-
-
-import { List, ListItem } from 'react-native-elements'
+import { View, AsyncStorage, Text, StyleSheet, SafeAreaView, ScrollView} from 'react-native'
 
 export default class HistoryStats extends Component {
     state = {
@@ -65,6 +62,9 @@ export default class HistoryStats extends Component {
         newList.sort(function(a, b) { 
             return a.date < b.date;
         })
+
+        // Remove first item of array
+        newList.shift()
     
         return newList
     }
