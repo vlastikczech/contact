@@ -118,7 +118,10 @@ export default class HistoryStats extends Component {
                 <SafeAreaView>
                     <Text style={styles.titleText}>History</Text>
                     <View>
-                        {displayList}
+                           {historyList.length != 0 
+                            ? displayList
+                            : displayEmptyList
+                           }
                     </View>
                 </SafeAreaView>
             </ScrollView>
