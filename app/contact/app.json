@@ -12,6 +12,9 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
+    "notification": {
+      "icon": "./assets/images/icon.png"
+    },
     "scheme": "myapp",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -25,9 +28,11 @@
       "**/*"
     ],
     "ios": {
+      "buildNumber": "1",
       "supportsTablet": true
     },
     "android": {
+      "permissions": [],
       "package": "com.phxdevs.patient31",
       "versionCode": 1
     }

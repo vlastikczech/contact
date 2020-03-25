@@ -14,9 +14,9 @@ export default class MultiDayStats extends Component {
         let date;
 
         if (minusDays == 0) {
-            date = today.getDate() + "_" + parseInt(today.getMonth()+1) + "_" + today.getFullYear()
+            date = today.getDate() + "_" + parseInt(today.getMonth()+1, 10) + "_" + today.getFullYear()
         } else {
-            date = (today.getDate() - parseInt(minusDays)) + "_" + parseInt(today.getMonth()+1) + "_" + today.getFullYear()
+            date = (today.getDate() - parseInt(minusDays, 10)) + "_" + parseInt(today.getMonth()+1, 10) + "_" + today.getFullYear()
         }
 
         return '@' + name + '_' + date;
@@ -54,7 +54,7 @@ export default class MultiDayStats extends Component {
                 }
                 console.log(value);
             } else {
-                console.log("No " + this.getStorageKey(key) + " key stored");
+                console.log("No " + key + " key stored");
             }
             } catch (error) {
             // Error retrieving data

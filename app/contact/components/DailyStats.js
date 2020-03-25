@@ -10,7 +10,7 @@ export default class DailyStats extends Component {
 
     getStorageKey(name) {
         let today = new Date();
-        let date = today.getDate() + "_" + parseInt(today.getMonth()+1) + "_" + today.getFullYear()
+        let date = today.getDate() + "_" + parseInt(today.getMonth()+1, 10) + "_" + today.getFullYear()
         return '@' + name + '_' + date;
     }
 

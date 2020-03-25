@@ -44,7 +44,7 @@ export default class ContactCounter extends Component {
 
     getStorageKey() {
       let today = new Date();
-      let date = today.getDate() + "_" + parseInt(today.getMonth()+1) + "_" + today.getFullYear()
+      let date = today.getDate() + "_" + parseInt(today.getMonth()+1, 10) + "_" + today.getFullYear()
       return '@' + this.state.name + '_' + date;
     }
 
@@ -65,7 +65,6 @@ export default class ContactCounter extends Component {
     
           if (value !== null) {
             // We have data!!
-            //setInPersonCount(parseInt(value, 10));
             this.setState({count: parseInt(value, 10)});
             console.log(value);
           } else {
