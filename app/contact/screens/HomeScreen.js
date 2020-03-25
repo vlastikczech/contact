@@ -7,11 +7,14 @@ import * as WebBrowser from 'expo-web-browser';
 import ContactCounter from '../components/ContactCounter';
 import Reminders from '../components/Reminders';
 
+import FirstTimeModal from '../components/FirstTimeModal'
+
 export default function HomeScreen() {
 
 
   return (
     <View style={styles.container}>
+      <FirstTimeModal pagekey={"home_screen_key"} />
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
         <View style={styles.getStartedContainer}>
 
