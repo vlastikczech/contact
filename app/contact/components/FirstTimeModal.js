@@ -16,7 +16,7 @@ export default class FirstTimeModal extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        modalVisible: true
+        modalVisible: false
       };
     }
 
