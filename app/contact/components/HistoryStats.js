@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import moment from 'moment';
 import { View, AsyncStorage, Text, StyleSheet, SafeAreaView, ScrollView} from 'react-native'
 
 export default class HistoryStats extends Component {
@@ -11,7 +12,6 @@ export default class HistoryStats extends Component {
         try {
             const inPersonRegex = /([a-z]+_){1}([^_ ]+)/g
             const digitalRegex = /([a-z]+)/g
-            const dateRegex = /([0-9]+_){2}([^_ ]+)/g
 
             await AsyncStorage.getAllKeys((err, keys) => {
                 AsyncStorage.multiGet(keys, (err, stores) => {
@@ -24,7 +24,7 @@ export default class HistoryStats extends Component {
                         let list = this.state.inPersonList
 
                         list.push({ 
-                            date: key.match(dateRegex),
+                            date: this.getFormattedDate(key),
                             inPersonCount: value
                         })
 
@@ -35,7 +35,7 @@ export default class HistoryStats extends Component {
                         let list = this.state.digitalList
 
                         list.push({ 
-                            date: key.match(dateRegex),
+                            date: this.getFormattedDate(key),
                             digitalCount: value
                         })
 
@@ -48,8 +48,16 @@ export default class HistoryStats extends Component {
             // Error retrieving data
             }
       }
-    
-      combineLists() {
+
+    getFormattedDate(key) {
+        const dateRegex = /([0-9]+_){2}([^_ ]+)/g
+        let date_part = key.match(dateRegex)[0]
+        let parts = date_part.split('_')
+        var parsed_date = new Date(parts[2], parts[1] - 1, parts[0]); 
+        return moment(parsed_date).format('ll');
+    }
+
+    combineLists() {
         let inPersonList = this.state.inPersonList
         let digitalList = this.state.digitalList
 
@@ -65,7 +73,10 @@ export default class HistoryStats extends Component {
 
         // Remove first item of array
         newList.shift()
-    
+
+        // limit history list
+        newList = newList.slice(0,45)
+
         return newList
     }
     
@@ -80,14 +91,14 @@ export default class HistoryStats extends Component {
             return (
                 <View style={styles.statsContainer} key={idx}>
                         <View>
-                        <Text style={styles.statsTitleText}>{data.date}</Text>
+                        <Text style={styles.dateText}>{data.date}</Text>
                     </View>
                 
                     <View style={styles.countContainer}>
                         <Text style={styles.humanText}>
                             {data.inPersonCount}
                         </Text>
-                        
+                        <View style={styles.verticalHr}/>
                         <Text style={styles.digitalText}>
                             {data.digitalCount}
                         </Text>
@@ -99,7 +110,7 @@ export default class HistoryStats extends Component {
         return (
             <ScrollView>                
                 <SafeAreaView>
-                    <Text style={styles.statsTitleText}>History</Text>
+                    <Text style={styles.titleText}>History</Text>
                     <View>
                         {rendList}
                     </View>
@@ -120,32 +131,35 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         width: '100%'
     },
-    statsTitleText: {
-        fontSize: 30
+    titleText: {
+        fontSize: 30,
+        marginLeft: 16,
+        marginTop: 10,
+        marginBottom: 2
+    },
+    dateText: {
+        fontSize: 24
     },
     countContainer: {
         flexDirection: 'row',
         marginRight: 20,
     },
     humanText: {
-        backgroundColor: '#ed0000',
-        fontSize: 30,
-        color: 'white',
-        borderRadius: 50,
-        width: 40,
-        height: 40,
-        lineHeight: 40,
+        fontSize: 24,
+        color: '#ed0000',
+        width: 50,
         textAlign: 'center'
     },
     digitalText: {
-        backgroundColor: '#14ed00',
-        fontSize: 30,
-        color: 'white',
-        borderRadius: 50,
-        width: 40,
-        height: 40,
-        lineHeight: 40,
+        fontSize: 24,
+        color: '#14ed00',
+        width: 50,
         textAlign: 'center'
+    },
+    verticalHr: {
+        borderLeftColor: '#D3D3D3',
+        borderLeftWidth: 1,
+        opacity: .7,
+        height: '100%',
     }
-
 })

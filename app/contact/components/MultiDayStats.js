@@ -86,7 +86,7 @@ export default class MultiDayStats extends Component {
                         <Text style={styles.humanText}>
                             {this.state.in_person_count}
                         </Text>
-                        
+                        <View style={styles.verticalHr}/>
                         <Text style={styles.digitalText}>
                             {this.state.digital_count}
                         </Text>
@@ -109,31 +109,28 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     statsTitleText: {
-        fontSize: 30
+        fontSize: 24
     },
     countContainer: {
         flexDirection: 'row',
         marginRight: 20,
     },
     humanText: {
-        backgroundColor: '#ed0000',
-        fontSize: 30,
-        color: 'white',
-        borderRadius: 50,
-        width: 40,
-        height: 40,
-        lineHeight: 40,
+        fontSize: 24,
+        color: '#ed0000',
+        width: 50,
         textAlign: 'center'
     },
     digitalText: {
-        backgroundColor: '#14ed00',
-        fontSize: 30,
-        color: 'white',
-        borderRadius: 50,
-        width: 40,
-        height: 40,
-        lineHeight: 40,
+        fontSize: 24,
+        color: '#14ed00',
+        width: 50,
         textAlign: 'center'
-    }
-
+    },
+    verticalHr: {
+        borderLeftColor: '#D3D3D3',
+        borderLeftWidth: 1,
+        opacity: .7,
+        height: '100%',
+    },
 })

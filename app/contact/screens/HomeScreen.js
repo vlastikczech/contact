@@ -5,15 +5,9 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
 import * as WebBrowser from 'expo-web-browser';
 import ContactCounter from '../components/ContactCounter';
-
-
-import { MonoText } from '../components/StyledText';
+import Reminders from '../components/Reminders';
 
 export default function HomeScreen() {
-  // const [inPersonCount, setInPersonCount] = useState(0);
-  // useEffect(() => {
-  //   _retrieveData();
-  // }, []);
 
 
   return (
@@ -40,6 +34,15 @@ export default function HomeScreen() {
         </View>
         <ContactCounter name="digital"/>
         </View>
+
+        <Divider style={styles.divider} />
+
+        <Text style={styles.counterHeader}>
+            Remind Me: 
+          </Text>
+
+        <Reminders />
+
       </ScrollView>
     </View>
   );
@@ -69,8 +72,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   divider: {
-    marginTop: 40,
-    backgroundColor: 'blue'
+    marginTop: 10
   },
   counterHeader: {
     fontSize: 24,
