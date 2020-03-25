@@ -87,10 +87,10 @@ export default class HistoryStats extends Component {
     render () {
         let historyList = this.combineLists()
 
-        const rendList = historyList.map( (data, idx) => {
+        const displayList = historyList.map( (data, idx) => {
             return (
                 <View style={styles.statsContainer} key={idx}>
-                        <View>
+                    <View>
                         <Text style={styles.dateText}>{data.date}</Text>
                     </View>
                 
@@ -107,12 +107,18 @@ export default class HistoryStats extends Component {
             )
         })
 
+        const displayEmptyList = (
+            <View style={styles.statsContainer}>
+                <Text style={styles.placeholderText}>--empty for now--</Text>
+            </View>
+        )
+
         return (
             <ScrollView>                
                 <SafeAreaView>
                     <Text style={styles.titleText}>History</Text>
                     <View>
-                        {rendList}
+                        {displayList}
                     </View>
                 </SafeAreaView>
             </ScrollView>
@@ -139,6 +145,9 @@ const styles = StyleSheet.create({
     },
     dateText: {
         fontSize: 24
+    },
+    placeholderText: {
+        fontSize: 16
     },
     countContainer: {
         flexDirection: 'row',

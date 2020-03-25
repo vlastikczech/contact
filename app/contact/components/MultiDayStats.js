@@ -30,8 +30,8 @@ export default class MultiDayStats extends Component {
     updateCounters() {
         this.clearCounters()
         let days = this.state.days
-
-        for(var i = 0; i < days; i++) {
+        // start at 1 to exclude today, then add one to make the count accurate (i.e. '3' give you the average of the last 3 full days)
+        for(var i = 1; i < days+1; i++) {
             let in_person = this.getStorageKey('in_person', i)
             let digital = this.getStorageKey('digital', i)
             this._retrieveData(in_person, 'in_person_count')

@@ -7,37 +7,20 @@ import Constants from 'expo-constants';
 
 export default class Reminders extends Component {
     state = {
-        hours: 0
+        hours: '0'
     }
     onSubmit(hours) {
-        console.log('selected hours: ' + hours);
+        console.log('on submit selected hours: ' + hours);
         this.persistUserSelection(hours);
 
         // for dev / debugging only
         if (hours == '1') {
             this.scheduleNotification(new Date().getTime() + 4000);
+        } else if (hours != '0') {
+            this.scheduleNext24Hours(parseInt(hours));
         }
-
-        this.scheduleNext24Hours(parseInt(hours));
         this.setState({ hours: hours })
 
-    }
-
-    scheduler = (interval) => {
-        console.log('running scheduler')
-        let scheduled_time = new Date();
-
-        if (interval === 24) {
-            scheduled_time.setHours(20)
-            this.scheduleNotification(scheduled_time.getTime())
-        } else {
-            for (let i=8; i<=20; i=i+interval) {
-                scheduled_time.setHours(i)
-                this.scheduleNotification(scheduled_time.getTime())
-                this.scheduleNotification(scheduled_time.getTime() + 86400000)
-            }
-        }
-        this.scheduleNotification(scheduled_time)
     }
 
     async scheduleNext24Hours(hours) {
@@ -49,7 +32,19 @@ export default class Reminders extends Component {
             return;
         }
 
-        this.scheduler(hours)
+        let scheduled_time = new Date();
+
+        if (hours === 24) {
+            scheduled_time.setHours(20)
+            this.scheduleNotification(scheduled_time.getTime())
+            this.scheduleNotification(scheduled_time.getTime() + 86400000)
+        } else {
+            for (let i=8; i<=20; i=i+hours) {
+                scheduled_time.setHours(i)
+                this.scheduleNotification(scheduled_time.getTime())
+                this.scheduleNotification(scheduled_time.getTime() + 86400000)
+            }
+        }
     }
 
     scheduleNotification(time) {
@@ -97,7 +92,7 @@ export default class Reminders extends Component {
     async retrieveUserSelection() {
         try {
             const value = await AsyncStorage.getItem('@notification_preference');
-            console.log('data retrieved: ' + value)
+            console.log('notification preference retrieved: ' + value)
             if (value !== null) {
                 return value;
             } else {
@@ -106,11 +101,7 @@ export default class Reminders extends Component {
         } catch (error) {
             console.log("error retrieving notification_preference")
         }
-        return 0;
-    }
-
-    handleNotification() {
-        console.warn('ok! got your notif');
+        return '0';
     }
 
     async componentDidMount() {
@@ -121,13 +112,9 @@ export default class Reminders extends Component {
             console.log('Notification permissions granted.')
         }
 
-        this.setState({hours: this.retrieveUserSelection()})
-        this.scheduleNext24Hours(this.state.hours);
-
-        // If we want to do something with the notification when the app
-        // is active, we need to listen to notification events and 
-        // handle them in a callback
-        Notifications.addListener(this.handleNotification);
+        await Notifications.cancelAllScheduledNotificationsAsync()
+        let hours = await this.retrieveUserSelection()
+        await this.setState({hours: hours})
     }
 
     render() {
@@ -135,9 +122,9 @@ export default class Reminders extends Component {
             <View style={styles.picker}>
                 <RNPickerSelect 
                     onValueChange={(value) => this.onSubmit(value)} 
-                    value={this.state.hours} 
+                    value={ this.state.hours } 
                     items={[
-                        { label: 'In 30 seconds (dev only)', value: '1' },
+                        { label: 'In 4 seconds (dev only)', value: '1' },
                         { label: 'Never', value: '0' },
                         { label: 'Every 3 hrs', value: '3' },
                         { label: 'Every 6 hrs', value: '6' },
