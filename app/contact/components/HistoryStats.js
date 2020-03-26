@@ -79,7 +79,7 @@ export default class HistoryStats extends Component {
 
         return newList
     }
-    
+
     componentDidMount() {
         this._retrieveData()
     }
@@ -114,9 +114,10 @@ export default class HistoryStats extends Component {
         )
 
         return (
+            <View>
+            <Text style={styles.titleText}>History</Text>
             <ScrollView>                
                 <SafeAreaView>
-                    <Text style={styles.titleText}>History</Text>
                     <View>
                            {historyList.length != 0 
                             ? displayList
@@ -125,6 +126,7 @@ export default class HistoryStats extends Component {
                     </View>
                 </SafeAreaView>
             </ScrollView>
+            </View>
         )
     }
 }
