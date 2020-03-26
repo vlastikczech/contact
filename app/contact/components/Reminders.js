@@ -32,16 +32,21 @@ export default class Reminders extends Component {
             return;
         }
 
+        let now = new Date();
         let scheduled_time = new Date();
 
         if (hours === 24) {
             scheduled_time.setHours(20)
-            this.scheduleNotification(scheduled_time.getTime())
+            if (scheduled_time.getTime() > now.getTime()) {
+                this.scheduleNotification(scheduled_time.getTime())
+            }
             this.scheduleNotification(scheduled_time.getTime() + 86400000)
         } else {
             for (let i=8; i<=20; i=i+hours) {
                 scheduled_time.setHours(i)
-                this.scheduleNotification(scheduled_time.getTime())
+                if (scheduled_time.getTime() > now.getTime()) {
+                    this.scheduleNotification(scheduled_time.getTime())
+                }
                 this.scheduleNotification(scheduled_time.getTime() + 86400000)
             }
         }

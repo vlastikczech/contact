@@ -28,7 +28,9 @@
       "**/*"
     ],
     "ios": {
-      "buildNumber": "1",
+      "icon": "./assets/images/icon_apple.png",
+      "buildNumber": "1.0.0",
+      "bundleIdentifier": "com.phxdevs.patient31",
       "supportsTablet": true
     },
     "android": {
