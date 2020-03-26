@@ -38,6 +38,14 @@ export default function HomeScreen() {
         <ContactCounter name="digital"/>
         </View>
 
+        <Divider style={styles.divider} />
+
+        <Text style={styles.counterHeader}>
+            Remind Me: 
+          </Text>
+
+        <Reminders />
+
       </ScrollView>
     </View>
   );
