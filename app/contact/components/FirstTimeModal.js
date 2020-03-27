@@ -58,7 +58,7 @@ export default class FirstTimeModal extends Component {
                     <View style={styles.imageContainer}>
                         <Image
                           style={styles.image}
-                          source={require('../assets/images/splash.png')}
+                          source={require('../assets/images/P31_Square.png')}
                         />
                     </View>
                     <Text style={styles.titleText}>Patient 31</Text>

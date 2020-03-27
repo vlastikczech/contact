@@ -11,13 +11,13 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/P31_Circle.png",
     "notification": {
-      "icon": "./assets/images/icon.png"
+      "icon": "./assets/images/P31_Circle.png"
     },
     "scheme": "myapp",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/patient31_splashscreen.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -28,7 +28,7 @@
       "**/*"
     ],
     "ios": {
-      "icon": "./assets/images/icon_apple.png",
+      "icon": "./assets/images/P31_Square.png",
       "buildNumber": "1.0.0",
       "bundleIdentifier": "com.phxdevs.patient31",
       "supportsTablet": true
