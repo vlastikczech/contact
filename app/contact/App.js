@@ -30,6 +30,7 @@ export default function App(props) {
         await Font.loadAsync({
           ...Ionicons.font,
           'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
+          'Raleway-Bold': require('./assets/fonts/Raleway-Bold.ttf')
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service
@@ -51,7 +52,23 @@ export default function App(props) {
         {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
         <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
           <Stack.Navigator>
-            <Stack.Screen name="Patient 31" component={BottomTabNavigator} />
+            <Stack.Screen 
+              name="Patient 31" 
+              component={BottomTabNavigator}
+              options={{
+                headerStyle: {
+                  backgroundColor: '#ececec',
+                  height: 90
+                },
+                headerTintColor: '#626262',
+                headerTitleAlign: 'center',
+                headerTitleStyle: {
+                  fontFamily: "Raleway-Bold",
+                  fontWeight: "200",
+                  fontSize: 27,
+                },
+              }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </View>
@@ -62,6 +79,6 @@ export default function App(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ececec',
   },
 });

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
@@ -15,31 +16,40 @@ export default function BottomTabNavigator({ navigation, route }) {
   navigation.setOptions({ headerTitle: getHeaderTitle(route) });
 
   return (
-    <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
-      <BottomTab.Screen
-        name="Info"
-        component={InfoScreen}
-        options={{
-          title: 'Info',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-information" />,
-        }}
-      />
-      <BottomTab.Screen
-        name="Connections"
-        component={HomeScreen}
-        options={{
-          title: 'Connections',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-people" />,
-        }}
-      />
-      <BottomTab.Screen
-        name="Stats"
-        component={StatsScreen}
-        options={{
-          title: 'Stats',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-stats" />,
-        }}
-      />
+    <BottomTab.Navigator 
+      initialRouteName={INITIAL_ROUTE_NAME}
+      tabBarOptions={{
+        showLabel: false,
+        style: {
+          height: 120,
+          backgroundColor: '#ececec'
+        },
+      }}>
+        <BottomTab.Screen
+          name="Info"
+          component={InfoScreen}
+          options={{
+            // title: 'Info',
+            tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="info" />,
+            style: {backgroundColor:'red'}
+          }}
+        />
+        <BottomTab.Screen
+          name="Connections"
+          component={HomeScreen}
+          options={{
+            // title: 'Connections',
+            tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="user" />,
+          }}
+        />
+        <BottomTab.Screen
+          name="Stats"
+          component={StatsScreen}
+          options={{
+            // title: 'Stats',
+            tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="stats" />,
+          }}
+        />
     </BottomTab.Navigator>
   );
 }
@@ -49,10 +59,10 @@ function getHeaderTitle(route) {
 
   switch (routeName) {
     case 'Connections':
-      return 'Patient 31';
+      return 'Connections';
     case 'Info':
-      return 'Patient 31';
+      return 'Information';
     case 'Stats':
-      return 'Patient 31';
+      return 'Statistics';
   }
 }

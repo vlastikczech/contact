@@ -1,4 +1,4 @@
-import React, { useState, useEffect, setState } from 'react';
+import React, { useState, useEffect, setState, Component } from 'react';
 import { Image, Platform, StyleSheet,TouchableOpacity, View, AsyncStorage } from 'react-native';
 import { Tooltip, Text, Button, Icon, Divider  } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -10,7 +10,6 @@ import Reminders from '../components/Reminders';
 import FirstTimeModal from '../components/FirstTimeModal'
 
 export default function HomeScreen() {
-
 
   return (
     <View style={styles.container}>
@@ -41,7 +40,6 @@ export default function HomeScreen() {
       </ScrollView>
     </View>
   );
-
 
 }
 
