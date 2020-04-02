@@ -78,18 +78,20 @@ export default class MultiDayStats extends Component {
         return (
             <SafeAreaView>
                 <View style={styles.statsContainer}>
-                    <View>
-                        <Text style={styles.statsTitleText}>{this.state.title}</Text>
-                    </View>
-                
-                    <View style={styles.countContainer}>
-                        <Text style={styles.humanText}>
-                            {this.state.in_person_count}
-                        </Text>
-                        <View style={styles.verticalHr}/>
-                        <Text style={styles.digitalText}>
-                            {this.state.digital_count}
-                        </Text>
+                    <View style={styles.itemBox}>
+                        <View>
+                            <Text style={styles.statsTitleText}>{this.state.title}</Text>
+                        </View>
+                    
+                        <View style={styles.countContainer}>
+                            <Text style={styles.humanText}>
+                                {this.state.in_person_count}
+                            </Text>
+                            <View style={styles.verticalHr}/>
+                            <Text style={styles.digitalText}>
+                                {this.state.digital_count}
+                            </Text>
+                        </View>
                     </View>
                 </View>
             </SafeAreaView>
@@ -99,17 +101,32 @@ export default class MultiDayStats extends Component {
 
 const styles = StyleSheet.create({
     statsContainer: {
-        borderBottomWidth: 1,
-        borderColor: 'rgba(0, 0, 0, 0.12)',
-        padding: 16,
         display: 'flex',
         flexDirection: 'row',
-        backgroundColor: 'rgb(255, 255, 255)',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
+        alignItems: 'center',
         width: '100%'
     },
     statsTitleText: {
-        fontSize: 24
+        fontSize: 24,
+        color: '#989898'
+    },
+    itemBox: {
+        display: 'flex',
+        flexDirection: 'row',
+        backgroundColor: '#F0F0F0',
+        padding: 16,
+        marginVertical: 10,
+        width: '85%',
+        borderRadius: 23,
+        shadowColor: 'rgba(0, 0, 0, 0.25)',
+        shadowOffset: {
+            width: 0,
+            height: 6,
+        },
+        shadowOpacity: 0.39,
+        shadowRadius: 8.30,
+        elevation: 13
     },
     countContainer: {
         flexDirection: 'row',

@@ -12,8 +12,8 @@ export default function StatsScreen(props) {
   return (
     <View>
       <DailyStats nav={props.navigation}/>
-      <MultiDayStats nav={props.navigation} title='3 day avg:' days={3}/>
-      <MultiDayStats nav={props.navigation} title='10 day avg:' days={10}/>
+      <MultiDayStats nav={props.navigation} title='Three Days' days={3}/>
+      <MultiDayStats nav={props.navigation} title='Ten Days' days={10}/>
       <HistoryStats/>
     </View>
   );
