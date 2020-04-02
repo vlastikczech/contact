@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { Divider, Image } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default class FirstTimeModal extends Component {
     constructor(props) {
@@ -53,7 +54,33 @@ export default class FirstTimeModal extends Component {
               alert("Modal has been closed.");
             }}
           >
-            <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+            <LinearGradient
+              style={styles.container}
+              locations={[0, 0.05]}
+              colors={['#c4c4c4', 'transparent']}
+              start={{ x: 1, y: 1 }}
+              end={{ x: 0, y: 1 }}
+            >
+            <LinearGradient
+              style={styles.container}
+              locations={[0, 0.05]}
+              colors={['#c4c4c4', 'transparent']}
+              start={{ x: 1, y: 1 }}
+              end={{ x: 1, y: 1 }}
+            >
+            <LinearGradient
+              style={styles.container}
+              locations={[0, 0.03]}
+              colors={['#c4c4c4', 'transparent']}
+            >
+            <LinearGradient
+              style={styles.container}
+              locations={[0, 0.03]}
+              colors={['#c4c4c4', 'transparent']}
+              start={{ x: 0, y: 1 }}
+              end={{ x: 0, y: 0 }}
+            >
+            <ScrollView contentContainerStyle={styles.contentContainer}>
                 <View style={styles.firstTimeContainer}>
                     <View style={styles.imageContainer}>
                         <Image
@@ -64,8 +91,8 @@ export default class FirstTimeModal extends Component {
                     <Text style={styles.titleText}>Patient 31</Text>
                     <Text style={styles.conversationText}>Thanks for downloading Patient 31!</Text>
                     <Text style={styles.conversationText}>We built this app for social distancing... as an easy way to keep track of the daily number of other humans you come in contact with.</Text>
-                    <Text style={styles.conversationText}>It might be a little rough around the edges. We wanted to get it in your hands as quickly as possible. Please send suggestions to patient31@phxdevs.com.</Text>
-                    <Text style={styles.conversationText}>Head over to the info tab to learn how to use the app and the story behind the name.</Text>
+                    {/* <Text style={styles.conversationText}>It might be a little rough around the edges. We wanted to get it in your hands as quickly as possible. Please send suggestions to patient31@phxdevs.com.</Text> */}
+                    {/* <Text style={styles.conversationText}>Head over to the info tab to learn how to use the app and the story behind the name.</Text> */}
                     <Text style={styles.conversationText}>Stay healthy.</Text>
                     <Divider style={styles.divider}/>
 
@@ -82,6 +109,10 @@ export default class FirstTimeModal extends Component {
                     </View>
               </View>
             </ScrollView>
+            </LinearGradient>
+            </LinearGradient>
+            </LinearGradient>
+            </LinearGradient>
           </Modal>
         </View>
       );
@@ -89,16 +120,18 @@ export default class FirstTimeModal extends Component {
   }
 
   const styles = StyleSheet.create({
+        lineartop: {
+          backgroundColor: '#eafcff',
+        },
         firstTimeContainer:{
-            backgroundColor:'#D3D3D3',
             flex:1,
             marginTop:5,
             marginBottom:40,
             marginLeft:20,
             marginRight:20,
             borderRadius:20,
-            borderWidth:2,
-            borderColor:'black'
+            // borderWidth:2,
+            backgroundColor: '#ececec',
         },
         firstTimeExitContainer:{
             flex:2,
@@ -108,9 +141,8 @@ export default class FirstTimeModal extends Component {
         firstTimeExitButtonContainer:{
             width:100,
             height:40,
-            backgroundColor: '#6AA84F',
-            borderColor: '#6AA84F',
-            borderWidth: 1,
+            // backgroundColor: '#6AA84F',
+            // borderWidth: 1,
             borderRadius:10,
             justifyContent:'center',
             marginVertical: 10
@@ -131,8 +163,10 @@ export default class FirstTimeModal extends Component {
             width: 150
         },
         container: {
+            // backgroundColor: '#ececec',
+            // boxShadow: 'inset 3px 3px 15px rgba(0, 0, 0, 0.25)',
             flex: 1,
-            backgroundColor: '#fafafa',
+            borderRadius: 23,
         },
         contentContainer: {
             paddingTop: 15,
@@ -166,12 +200,12 @@ export default class FirstTimeModal extends Component {
             backgroundColor: '#fdfdfd',
             paddingHorizontal: 15,
             paddingVertical: 15,
-            borderWidth: StyleSheet.hairlineWidth,
+            // borderWidth: StyleSheet.hairlineWidth,
             borderBottomWidth: 0,
-            borderColor: '#ededed',
+            // borderColor: '#ededed',
         },
         lastOption: {
-            borderBottomWidth: StyleSheet.hairlineWidth,
+            // borderBottomWidth: StyleSheet.hairlineWidth,
         },
         optionText: {
             fontSize: 15,

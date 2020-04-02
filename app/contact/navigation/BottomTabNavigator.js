@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View } from 'react-native';
+ import { View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
@@ -22,7 +22,8 @@ export default function BottomTabNavigator({ navigation, route }) {
         showLabel: false,
         style: {
           height: 120,
-          backgroundColor: '#ececec'
+          backgroundColor: '#ececec',
+          borderTopWidth: 0
         },
       }}>
         <BottomTab.Screen

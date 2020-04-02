@@ -12,9 +12,14 @@ export default function TabBarIcon(props) {
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
       >
-          <View style={styles.selected}>
-            <ChooseSVG name={props.name} color="#bdbdbd"/>
-          </View>
+          <LinearGradient 
+            style={styles.selected}
+            colors={['#d5d5d5', '#ffffff']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            >
+              <ChooseSVG name={props.name} color="#bdbdbd"/>
+          </LinearGradient>
       </LinearGradient>
     )
   } else {
@@ -31,19 +36,54 @@ const styles = StyleSheet.create({
     width: 70,
     height: 70,
     backgroundColor: "#F0F0F0",
-    boxShadow: "-10px -10px 30px #FFFFFF, 5px 5px 30px rgba(0, 0, 0, 0.25)",
+    shadowColor: 'rgba(0, 0, 0, 0.25)',
+    // shadowColor: 'red',
+    shadowOffset: {
+      width: 8,
+      height: 8,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 12,
+    elevation: 17,
+    // boxShadow: "-10px -10px 30px #FFFFFF, 5px 5px 30px rgba(0, 0, 0, 0.25)",
     borderRadius: 19,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  inset: {
+    // backgroundColor: "red",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: "40%",
+    height: "40%",
+    borderRadius: 15,
+    shadowColor: 'rgb(119, 119, 119)',
+    // shadowOffset: {
+    //   width: 8,
+    //   height: 8,
+    // },
+    shadowOpacity: 1,
+    shadowRadius: 40,
+    elevation: 10,
+  },
   selected: {
-    backgroundColor: "#F0F0F0",
+    // backgroundColor: "#F0F0F0",
     width: 68,
     height: 68,
-    border: '3px solid black',
-    boxShadow: "inset 5px 5px 30px rgba(119, 119, 119, 0.25), inset -5px -5px 10px rgba(255, 255, 255, 0.25)",
+    // border: '10px solid white',
+    // shadowColor: 'rgba(119, 119, 119, 0.25)',
+    // shadowOffset: {
+    //   width: 8,
+    //   height: 8,
+    // },
+    // shadowOpacity: 0.5,
+    // shadowRadius: 12,
+    // elevation: 17,
+    // boxShadow: "inset 5px 5px 30px rgba(119, 119, 119, 0.25), inset -5px -5px 10px rgba(255, 255, 255, 0.25)",
     borderRadius: 19,
+    overflow: 'hidden',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

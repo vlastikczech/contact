@@ -58,7 +58,8 @@ export default function App(props) {
               options={{
                 headerStyle: {
                   backgroundColor: '#ececec',
-                  height: 90
+                  height: 90,
+                  borderBottomWidth: 0,
                 },
                 headerTintColor: '#626262',
                 headerTitleAlign: 'center',
