@@ -198,8 +198,7 @@ const styles = StyleSheet.create({
         fontSize: 16
     },
     countContainer: {
-        flexDirection: 'row',
-        marginRight: 20,
+        flexDirection: 'row'
     },
     humanText: {
         fontSize: 24,
