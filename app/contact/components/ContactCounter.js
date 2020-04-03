@@ -1,9 +1,11 @@
 import React, { useState, useEffect, setState, Component } from 'react';
 import { Image, Platform, StyleSheet,TouchableOpacity, View, AsyncStorage } from 'react-native';
 import { Tooltip, Text, Button, Icon } from 'react-native-elements';
+import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
-
+import PlusIcon from '../assets/icons/plus.svg'
+import MinusIcon from '../assets/icons/minus.svg'
 import { MonoText } from './StyledText';
 
 export default class ContactCounter extends Component {
@@ -20,10 +22,17 @@ export default class ContactCounter extends Component {
           dynamic_styles.push(styles.green)
         }
         return (
+          
             <View style={styles.buttonGroup}>
-                <Icon name='minus-circle' type='font-awesome' size={110} onPress={() => this.handleDecrease()}/>
+                <MinusIcon
+                  style={styles.icon}
+                  onPress= {() => this.handleDecrease()}
+                />
                 <Text style={dynamic_styles}>{this.state.count}</Text>
-                <Icon name='plus-circle' type='font-awesome' size={110} onPress={() => this.handleIncrease()}/>
+                <PlusIcon
+                  style={styles.icon} 
+                  onPress= {() => this.handleIncrease()}
+                />
             </View>
         );
     }
@@ -86,6 +95,20 @@ const styles = StyleSheet.create({
     },
     green: {
       color: '#14ed00'
+    },
+    icon: {
+      height:95,
+      width: 95,
+      borderRadius: 50,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 5,
+      },
+      shadowOpacity: 0.36,
+      shadowRadius: 6.68,
+      
+      elevation: 6,
     },
     buttonGroup: {
         display: 'flex',
