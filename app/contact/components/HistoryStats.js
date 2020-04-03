@@ -70,7 +70,7 @@ export default class HistoryStats extends Component {
 
         // sorts the list
         newList.sort(function(a, b) { 
-            return a.date < b.date;
+            return a.date[0] > b.date[0];
         })
 
         // Remove first item of array
