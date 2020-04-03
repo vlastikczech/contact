@@ -1,11 +1,13 @@
 import React, { useState, useEffect, setState, Component } from 'react';
-import { Image, Platform, StyleSheet,TouchableOpacity, View, AsyncStorage } from 'react-native';
+import { Image, Platform, StyleSheet,TouchableOpacity, View, AsyncStorage, Dimensions } from 'react-native';
 import { Tooltip, Text, Button, Icon } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
 import PlusIcon from '../assets/icons/plus.svg'
 import MinusIcon from '../assets/icons/minus.svg'
 import { MonoText } from './StyledText';
+
+let width = Dimensions.get('window').width; //full width
 
 export default class ContactCounter extends Component {
     state = {
@@ -86,18 +88,17 @@ export default class ContactCounter extends Component {
 
 const styles = StyleSheet.create({
     counterText: {
-        fontSize: 80,
-        marginHorizontal: 15
+        fontSize: 60,
+        textAlign: 'center',
+        width: width - 230
       },
     red: {
-      color: '#ed0000'
+      color: '#CF3150'
     },
     green: {
-      color: '#14ed00'
+      color: '#25BE9A'
     },
     icon: {
-      height:95,
-      width: 95,
       borderRadius: 50,
       shadowColor: "#000",
       shadowOffset: {
@@ -106,7 +107,6 @@ const styles = StyleSheet.create({
       },
       shadowOpacity: 0.36,
       shadowRadius: 6.68,
-      
       elevation: 6,
     },
     buttonGroup: {

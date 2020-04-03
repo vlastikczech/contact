@@ -201,13 +201,13 @@ const styles = StyleSheet.create({
     },
     humanText: {
         fontSize: 24,
-        color: '#ed0000',
+        color: '#D03251',
         width: 50,
         textAlign: 'center'
     },
     digitalText: {
         fontSize: 24,
-        color: '#14ed00',
+        color: '#26BF9B',
         width: 50,
         textAlign: 'center'
     },
