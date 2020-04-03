@@ -14,7 +14,7 @@ export default function TabBarIcon(props) {
       >
           <LinearGradient 
             style={styles.selected}
-            colors={['#d5d5d5', '#ffffff']}
+            colors={['#d7d7d7', '#f0f0f0']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             >

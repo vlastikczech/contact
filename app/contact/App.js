@@ -30,7 +30,9 @@ export default function App(props) {
         await Font.loadAsync({
           ...Ionicons.font,
           'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
-          'Raleway-Bold': require('./assets/fonts/Raleway-Bold.ttf')
+          'Raleway-Bold': require('./assets/fonts/Raleway-Bold.ttf'),
+          'Raleway-Medium': require('./assets/fonts/Raleway-Medium.ttf'),
+          'Roboto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service
@@ -58,8 +60,9 @@ export default function App(props) {
               options={{
                 headerStyle: {
                   backgroundColor: '#ececec',
-                  height: 90,
+                  height: 100,
                   borderBottomWidth: 0,
+                  elevation: 0,
                 },
                 headerTintColor: '#626262',
                 headerTitleAlign: 'center',

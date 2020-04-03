@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import moment from 'moment';
 import { View, AsyncStorage, Text, StyleSheet, SafeAreaView, ScrollView} from 'react-native'
+import InsetShadow from '../assets/UI/InsetShadow';
+import Inset from '../assets/UI/Inset';
 
 export default class HistoryStats extends Component {
     state = {
@@ -90,18 +92,26 @@ export default class HistoryStats extends Component {
         const displayList = historyList.map( (data, idx) => {
             return (
                 <View style={styles.statsContainer} key={idx}>
-                    <View>
-                        <Text style={styles.dateText}>{data.date}</Text>
-                    </View>
-                
-                    <View style={styles.countContainer}>
-                        <Text style={styles.humanText}>
-                            {data.inPersonCount}
-                        </Text>
-                        <View style={styles.verticalHr}/>
-                        <Text style={styles.digitalText}>
-                            {data.digitalCount}
-                        </Text>
+                    <View style={styles.itemBox}>
+                        <View>
+                            <Text style={styles.dateText}>
+                                {data.date}
+                            </Text>
+                        </View>
+                    
+                        <View style={styles.countContainer}>
+                            <Inset>
+                                <Text style={styles.humanText}>
+                                    {data.inPersonCount}
+                                </Text>
+                            </Inset>
+                            <View style={styles.horizontalSpace}/>
+                            <Inset>
+                                <Text style={styles.digitalText}>
+                                    {data.digitalCount}
+                                </Text>
+                            </Inset>
+                        </View>
                     </View>
                 </View>
             )
@@ -114,42 +124,75 @@ export default class HistoryStats extends Component {
         )
 
         return (
-            <View>
-            <Text style={styles.titleText}>History</Text>
-            <ScrollView>                
-                <SafeAreaView>
-                    <View>
-                           {historyList.length != 0 
-                            ? displayList
-                            : displayEmptyList
-                           }
-                    </View>
-                </SafeAreaView>
-            </ScrollView>
+            <View style={styles.historyContainer}>
+                <InsetShadow size={0.04}>
+                    <Text style={styles.titleText}>History</Text>
+                    <ScrollView>                
+                        <SafeAreaView>
+                            <View>
+                                {historyList.length != 0 
+                                    ? displayList
+                                    : displayEmptyList
+                                }
+                            </View>
+                        </SafeAreaView>
+                    </ScrollView>
+                </InsetShadow>
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    centered: {
+        // textAlign: 'center',
+    },
+    historyContainer: {
+        width: '90%',
+        flex: 1,
+        marginTop: 20,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        textAlign: 'center',
+    },
     statsContainer: {
-        borderBottomWidth: 1,
-        borderColor: 'rgba(0, 0, 0, 0.12)',
-        padding: 16,
         display: 'flex',
         flexDirection: 'row',
-        backgroundColor: 'rgb(255, 255, 255)',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
+        alignItems: 'center',
         width: '100%'
     },
+    itemBox: {
+        display: 'flex',
+        flexDirection: 'row',
+        backgroundColor: '#F0F0F0',
+        padding: 16,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginVertical: 3,
+        width: '90%',
+        borderRadius: 19,
+        shadowColor: 'rgba(0, 0, 0, 0.25)',
+        shadowOffset: {
+            width: 0,
+            height: 6,
+        },
+        shadowOpacity: 0.39,
+        shadowRadius: 8.30,
+        elevation: 13
+    },
     titleText: {
-        fontSize: 30,
+        fontSize: 24,
         marginLeft: 16,
         marginTop: 10,
-        marginBottom: 2
+        marginBottom: 2,
+        fontFamily: 'Raleway-Medium',
+        textAlign: 'center',
+        color: '#626262'
     },
     dateText: {
-        fontSize: 24
+        fontSize: 24,
+        color: '#989898'
     },
     placeholderText: {
         fontSize: 16
@@ -170,10 +213,7 @@ const styles = StyleSheet.create({
         width: 50,
         textAlign: 'center'
     },
-    verticalHr: {
-        borderLeftColor: '#D3D3D3',
-        borderLeftWidth: 1,
-        opacity: .7,
-        height: '100%',
+    horizontalSpace: {
+        marginHorizontal: 5
     }
 })

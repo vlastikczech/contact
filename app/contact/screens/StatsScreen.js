@@ -10,7 +10,7 @@ import MultiDayStats from '../components/MultiDayStats'
 
 export default function StatsScreen(props) {
   return (
-    <View>
+    <View style={styles.container}>
       <DailyStats nav={props.navigation}/>
       <MultiDayStats nav={props.navigation} title='Three Days' days={3}/>
       <MultiDayStats nav={props.navigation} title='Ten Days' days={10}/>
@@ -22,7 +22,7 @@ export default function StatsScreen(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fafafa',
+    backgroundColor: '#ececec',
   },
   contentContainer: {
     paddingTop: 15,

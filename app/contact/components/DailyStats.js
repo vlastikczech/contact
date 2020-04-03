@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, AsyncStorage, Text, StyleSheet, FlatList, SafeAreaView, ScrollView} from 'react-native'
+import Inset from '../assets/UI/Inset';
 
 
 export default class DailyStats extends Component {
@@ -61,13 +62,17 @@ export default class DailyStats extends Component {
                         </View>
                     
                         <View style={styles.countContainer}>
-                            <Text style={styles.humanText}>
-                                {this.state.in_person_count}
-                            </Text>
-                            <View style={styles.verticalHr}/>
-                            <Text style={styles.digitalText}>
-                                {this.state.digital_count}
-                            </Text>
+                            <Inset>
+                                <Text style={styles.humanText}>
+                                    {this.state.in_person_count}
+                                </Text>
+                            </Inset>
+                            <View style={styles.horizontalSpace}/>
+                            <Inset>
+                                <Text style={styles.digitalText}>
+                                    {this.state.digital_count}
+                                </Text>
+                            </Inset>
                         </View>
                     </View>
                 </View>
@@ -93,9 +98,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#F0F0F0',
         padding: 16,
+        justifyContent: 'space-between',
+        alignItems: 'center',
         marginVertical: 10,
-        width: '85%',
-        borderRadius: 23,
+        width: '90%',
+        borderRadius: 19,
         shadowColor: 'rgba(0, 0, 0, 0.25)',
         shadowOffset: {
             width: 0,
@@ -121,10 +128,7 @@ const styles = StyleSheet.create({
         width: 50,
         textAlign: 'center'
     },
-    verticalHr: {
-        borderLeftColor: '#D3D3D3',
-        borderLeftWidth: 1,
-        opacity: .7,
-        height: '100%',
+    horizontalSpace: {
+        marginHorizontal: 5
     }
 })

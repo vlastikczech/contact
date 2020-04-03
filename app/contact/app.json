@@ -19,7 +19,7 @@
     "splash": {
       "image": "./assets/images/patient31_splashscreen.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ececec"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

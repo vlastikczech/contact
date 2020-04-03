@@ -9,38 +9,69 @@ import Reminders from '../components/Reminders';
 
 import FirstTimeModal from '../components/FirstTimeModal'
 
-export default function HomeScreen() {
+export default class HomeScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalVisible: true
+    };
+    // this.setModalVisible = this.setModalVisible.bind(this)
+  }
 
-  return (
-    <View style={styles.container}>
-      <FirstTimeModal pagekey={"home_screen_key"} />
-      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        <View style={styles.getStartedContainer}>
+  componentDidMount() {
+      AsyncStorage.getItem('home_screen_key', (err, result) => {
+        if (err) {
+        } else {
+          if (result == null) {
+            console.log("null value recieved", result);
+            this.setModalVisible(true);
+          } else {
+            console.log("result", result);
+          }
+        }
+      });
+      AsyncStorage.setItem('home_screen_key', JSON.stringify({"value":"true"}), (err,result) => {
+          console.log("error",err,"result",result);
+      });
+  }
+
+  setModalVisible = (visible) => {
+      this.setState({ modalVisible: visible });
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        { this.state.modalVisible ? 
+          <FirstTimeModal setModalVisible={this.setModalVisible} modalVisible={this.state.modalVisible}/> 
+          :
+          <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+            <View style={styles.getStartedContainer}>
 
 
-          <View style={styles.counterView}>
-            <Text style={styles.counterHeader}>
-              Human Connections: 
-            </Text>
-            <Text style={styles.getStartedText}>{`Slow the spread!\nLOWER IS BETTER`}</Text>
-          </View>
-        <ContactCounter name="in_person"/>
+              <View style={styles.counterView}>
+                <Text style={styles.counterHeader}>
+                  Human Connections: 
+                </Text>
+                <Text style={styles.getStartedText}>{`Slow the spread!\nLOWER IS BETTER`}</Text>
+              </View>
+            <ContactCounter name="in_person"/>
 
-        <Divider style={styles.divider} />
+            <Divider style={styles.divider} />
 
-        <View style={styles.counterView}>
-          <Text style={styles.counterHeader}>
-            Digital Connections: 
-          </Text>
-          <Text style={styles.getStartedText}>{`Call a friend.\nText a family member.\nHIGHER IS BETTER`}</Text>
-        </View>
-        <ContactCounter name="digital"/>
-        </View>
-
-      </ScrollView>
-    </View>
-  );
-
+            <View style={styles.counterView}>
+              <Text style={styles.counterHeader}>
+                Digital Connections: 
+              </Text>
+              <Text style={styles.getStartedText}>{`Call a friend.\nText a family member.\nHIGHER IS BETTER`}</Text>
+            </View>
+            <ContactCounter name="digital"/>
+            </View>
+          </ScrollView>
+        }
+      </View>
+    );
+  }
 }
 
 HomeScreen.navigationOptions = {
@@ -49,6 +80,10 @@ HomeScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
   container: {
+    paddingLeft: '5%',
+    paddingRight: '5%',
+    marginRight: 'auto',
+    marginLeft: 'auto',
     flex: 1,
     backgroundColor: '#ececec'
   },
@@ -84,7 +119,6 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   counterView: {
-    paddingBottom: 5,
     paddingHorizontal: 10,
     textAlign: 'center'
   }

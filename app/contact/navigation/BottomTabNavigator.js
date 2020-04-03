@@ -23,7 +23,8 @@ export default function BottomTabNavigator({ navigation, route }) {
         style: {
           height: 120,
           backgroundColor: '#ececec',
-          borderTopWidth: 0
+          borderTopWidth: 0,
+          elevation: 0,
         },
       }}>
         <BottomTab.Screen
@@ -32,7 +33,6 @@ export default function BottomTabNavigator({ navigation, route }) {
           options={{
             // title: 'Info',
             tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="info" />,
-            style: {backgroundColor:'red'}
           }}
         />
         <BottomTab.Screen
