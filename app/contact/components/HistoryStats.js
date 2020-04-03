@@ -183,7 +183,6 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontSize: 24,
-        marginLeft: 16,
         marginTop: 10,
         marginBottom: 2,
         fontFamily: 'Raleway-Medium',

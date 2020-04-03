@@ -1,13 +1,14 @@
 import React, { useState, useEffect, setState, Component } from 'react';
-import { Image, Platform, StyleSheet,TouchableOpacity, View, AsyncStorage } from 'react-native';
+import { Image, Platform, StyleSheet,TouchableOpacity, View, AsyncStorage, Dimensions } from 'react-native';
 import { Tooltip, Text, Button, Icon, Divider  } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
-import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
 import * as WebBrowser from 'expo-web-browser';
 import ContactCounter from '../components/ContactCounter';
+import InsetShadow from '../assets/UI/InsetShadow';
 import Reminders from '../components/Reminders';
-
 import FirstTimeModal from '../components/FirstTimeModal'
+
+let width = Dimensions.get('window').width; //full width
 
 export default class HomeScreen extends Component {
   constructor(props) {
@@ -47,25 +48,31 @@ export default class HomeScreen extends Component {
           :
           <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             <View style={styles.getStartedContainer}>
-
-
-              <View style={styles.counterView}>
-                <Text style={styles.counterHeader}>
-                  Human Connections: 
-                </Text>
-                <Text style={styles.getStartedText}>{`Slow the spread!\nLOWER IS BETTER`}</Text>
-              </View>
-            <ContactCounter name="in_person"/>
+              <InsetShadow size={0.04}>
+                <View style={styles.counterContainer}>
+                  <View style={styles.counterView}>
+                    <Text style={styles.counterHeader}>
+                      Human
+                    </Text>
+                    <Text style={styles.getStartedText}>{`Slow the spread!\nLOWER IS BETTER`}</Text>
+                  </View>
+                  <ContactCounter name="in_person"/>
+                </View>
+              </InsetShadow>
 
             <Divider style={styles.divider} />
 
-            <View style={styles.counterView}>
-              <Text style={styles.counterHeader}>
-                Digital Connections: 
-              </Text>
-              <Text style={styles.getStartedText}>{`Call a friend.\nText a family member.\nHIGHER IS BETTER`}</Text>
-            </View>
-            <ContactCounter name="digital"/>
+              <InsetShadow size={0.04}>
+                <View style={styles.counterContainer}>
+                  <View style={styles.counterView}>
+                    <Text style={styles.counterHeader}>
+                      Digital
+                    </Text>
+                    <Text style={styles.getStartedText}>{`Call a friend.\nText a family member.\nHIGHER IS BETTER`}</Text>
+                  </View>
+                  <ContactCounter name="digital"/>
+                </View>
+              </InsetShadow>
             </View>
           </ScrollView>
         }
@@ -80,8 +87,8 @@ HomeScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
   container: {
-    paddingLeft: '5%',
-    paddingRight: '5%',
+    // paddingLeft: '5%',
+    // paddingRight: '5%',
     marginRight: 'auto',
     marginLeft: 'auto',
     flex: 1,
@@ -91,7 +98,6 @@ const styles = StyleSheet.create({
   },
   getStartedContainer: {
     alignItems: 'center',
-    marginHorizontal: 50
   },
   getStartedText: {
     fontSize: 17,
@@ -104,12 +110,18 @@ const styles = StyleSheet.create({
   },
   counterHeader: {
     fontSize: 24,
+    color: '#7A7A7A',
+    fontFamily: 'Raleway-Medium',
     textAlign: 'center',
     marginTop: 15
   },
   counterText: {
     fontSize: 80,
     marginHorizontal: 15
+  },
+  counterContainer: {
+    paddingBottom: 30,
+    width: width - 30
   },
   buttonGroup: {
     display: 'flex',

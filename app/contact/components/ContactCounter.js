@@ -1,7 +1,6 @@
 import React, { useState, useEffect, setState, Component } from 'react';
 import { Image, Platform, StyleSheet,TouchableOpacity, View, AsyncStorage } from 'react-native';
 import { Tooltip, Text, Button, Icon } from 'react-native-elements';
-import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
 import PlusIcon from '../assets/icons/plus.svg'
