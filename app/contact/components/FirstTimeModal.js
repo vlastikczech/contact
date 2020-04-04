@@ -20,7 +20,7 @@ export default function FirstTimeModal (props) {
   
   return (
     <InsetShadow size={0.02}>
-      <ScrollView contentContainerStyle={styles.contentContainer}>
+      <ScrollView>
             <LinearGradient 
             style={styles.firstTimeContainer}
             colors={[linearColor, '#f4f4f4']}
@@ -115,8 +115,6 @@ export default function FirstTimeModal (props) {
             // boxShadow: 'inset 3px 3px 15px rgba(0, 0, 0, 0.25)',
             flex: 1,
             borderRadius: 23,
-        },
-        contentContainer: {
         },
         titleText: {
           fontFamily: 'Raleway-Medium',

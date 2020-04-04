@@ -7,6 +7,7 @@ import ContactCounter from '../components/ContactCounter';
 import InsetShadow from '../assets/UI/InsetShadow';
 import Reminders from '../components/Reminders';
 import FirstTimeModal from '../components/FirstTimeModal'
+import ChooseSVG from '../assets/icons/SVG';
 
 let width = Dimensions.get('window').width; //full width
 
@@ -14,7 +15,7 @@ export default class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalVisible: true
+      modalVisible: false
     };
     // this.setModalVisible = this.setModalVisible.bind(this)
   }
@@ -46,35 +47,41 @@ export default class HomeScreen extends Component {
         { this.state.modalVisible ? 
           <FirstTimeModal setModalVisible={this.setModalVisible} modalVisible={this.state.modalVisible}/> 
           :
-          <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             <View style={styles.getStartedContainer}>
-              <InsetShadow size={0.04}>
-                <View style={styles.counterContainer}>
-                  <View style={styles.counterView}>
-                    <Text style={styles.counterHeader}>
-                      Human
-                    </Text>
-                    <Text style={styles.getStartedText}>{`Slow the spread!\nLOWER IS BETTER`}</Text>
+              <View style={styles.counterBox}>
+                <InsetShadow size={0.04}>
+                  <View style={styles.counterContainer}>
+                    <View style={styles.counterView}>
+                      <Text style={styles.counterHeader}>
+                        Human
+                      </Text>
+                      <View style={styles.svgBox}>
+                        <ChooseSVG name='help' />
+                      </View>
+                      <Text style={styles.getStartedText}>{`Slow the spread!\nLOWER IS BETTER`}</Text>
+                    </View>
+                    <ContactCounter name="in_person"/>
                   </View>
-                  <ContactCounter name="in_person"/>
-                </View>
-              </InsetShadow>
+                </InsetShadow>
+              </View>
 
-            <Divider style={styles.divider} />
-
-              <InsetShadow size={0.04}>
-                <View style={styles.counterContainer}>
-                  <View style={styles.counterView}>
-                    <Text style={styles.counterHeader}>
-                      Digital
-                    </Text>
-                    <Text style={styles.getStartedText}>{`Call a friend.\nText a family member.\nHIGHER IS BETTER`}</Text>
+              <View style={styles.counterBox}>
+                <InsetShadow size={0.04}>
+                  <View style={styles.counterContainer}>
+                    <View style={styles.counterView}>
+                      <Text style={styles.counterHeader}>
+                        Digital
+                      </Text>
+                      <View style={styles.svgBox}>
+                        <ChooseSVG name='help' />
+                      </View>
+                      <Text style={styles.getStartedText}>{`Call a friend.\nText a family member.\nHIGHER IS BETTER`}</Text>
+                    </View>
+                    <ContactCounter name="digital"/>
                   </View>
-                  <ContactCounter name="digital"/>
-                </View>
-              </InsetShadow>
+                </InsetShadow>
+              </View>
             </View>
-          </ScrollView>
         }
       </View>
     );
@@ -87,17 +94,32 @@ HomeScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
   container: {
-    // paddingLeft: '5%',
-    // paddingRight: '5%',
+    width: '100%',
+    paddingLeft: '5%',
+    paddingRight: '5%',
     marginRight: 'auto',
     marginLeft: 'auto',
     flex: 1,
     backgroundColor: '#ececec'
   },
-  contentContainer: {
+  counterBox: {
+    height: '47%',
+    position: 'relative',
+  },
+  svgBox: {
+    position: "absolute",
+    left: '89.6%',
+    right: '4.8%',
+    top: '15%',
+    bottom: '86.23%',
   },
   getStartedContainer: {
+    display: 'flex',
+    maxWidth: '100%',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    // backgroundColor: 'red',
+    flex: 1,
   },
   getStartedText: {
     fontSize: 17,
@@ -120,8 +142,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 15
   },
   counterContainer: {
-    paddingBottom: 30,
-    width: width - 30
+    // height: 50,
+    // backgroundColor: 'red',
+    // paddingBottom: 30,
+    // width: '100%',
   },
   buttonGroup: {
     display: 'flex',
@@ -130,8 +154,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20
   },
-  counterView: {
-    paddingHorizontal: 10,
-    textAlign: 'center'
-  }
 });

@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     counterText: {
         fontSize: 60,
         textAlign: 'center',
-        width: width - 230
+        width: '50%',
       },
     red: {
       color: '#CF3150'
@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 20
+        marginTop: 20,
+        paddingHorizontal: 30,
       }
 });
