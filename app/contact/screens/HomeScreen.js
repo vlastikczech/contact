@@ -8,14 +8,18 @@ import InsetShadow from '../assets/UI/InsetShadow';
 import Reminders from '../components/Reminders';
 import FirstTimeModal from '../components/FirstTimeModal'
 import ChooseSVG from '../assets/icons/SVG';
+import { LinearGradient } from 'expo-linear-gradient';
 
 let width = Dimensions.get('window').width; //full width
+let linearColor = Platform.OS === 'android' ? '#e8e8e8' : "#e4e4e4"
 
 export default class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalVisible: false
+      modalVisible: false,
+      humanHelp: true,
+      digitalHelp: false,
     };
     // this.setModalVisible = this.setModalVisible.bind(this)
   }
@@ -41,6 +45,11 @@ export default class HomeScreen extends Component {
       this.setState({ modalVisible: visible });
   }
 
+  toggleHelp = (item, toggle) => {
+    this.setState({ [item]: toggle })
+    console.log(this.state)
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -52,13 +61,23 @@ export default class HomeScreen extends Component {
                 <InsetShadow size={0.04}>
                   <View style={styles.counterContainer}>
                     <View style={styles.counterView}>
+                      <TouchableOpacity onPress={() => this.toggleHelp('humanHelp', !this.state.humanHelp)} style={styles.svgBox}>
+                        {this.state.humanHelp ? <ChooseSVG name='help' fill='none'/> : <ChooseSVG name='help' fill='#d6d6d6'/>}
+                      </TouchableOpacity>
                       <Text style={styles.counterHeader}>
                         Human
                       </Text>
-                      <View style={styles.svgBox}>
-                        <ChooseSVG name='help' />
-                      </View>
-                      <Text style={styles.getStartedText}>{`Slow the spread!\nLOWER IS BETTER`}</Text>
+                      {this.state.humanHelp &&
+                        <TouchableOpacity onPress={() => this.toggleHelp('humanHelp', !this.state.humanHelp)} activeOpacity={1} style={styles.centeredAbsolute}>
+                          <LinearGradient 
+                            style={styles.helpPopup}
+                            colors={[linearColor, '#f4f4f4']}
+                            start={{ x: 0, y: 0 }}
+                            end={{ x: 1, y: 1 }}
+                          >
+                            <Text style={styles.getStartedText}>{`Slow the spread!\nLOWER IS BETTER`}</Text>
+                          </LinearGradient>
+                        </TouchableOpacity>}
                     </View>
                     <ContactCounter name="in_person"/>
                   </View>
@@ -69,13 +88,23 @@ export default class HomeScreen extends Component {
                 <InsetShadow size={0.04}>
                   <View style={styles.counterContainer}>
                     <View style={styles.counterView}>
+                      <TouchableOpacity onPress={() => this.toggleHelp('digitalHelp', !this.state.digitalHelp)} style={styles.svgBox}>
+                        {this.state.digitalHelp ? <ChooseSVG name='help' fill='none'/> : <ChooseSVG name='help' fill='#d6d6d6'/>}
+                      </TouchableOpacity>
                       <Text style={styles.counterHeader}>
                         Digital
                       </Text>
-                      <View style={styles.svgBox}>
-                        <ChooseSVG name='help' />
-                      </View>
-                      <Text style={styles.getStartedText}>{`Call a friend.\nText a family member.\nHIGHER IS BETTER`}</Text>
+                      {this.state.digitalHelp &&
+                        <TouchableOpacity onPress={() => this.toggleHelp('digitalHelp', !this.state.digitalHelp)} activeOpacity={1} style={styles.centeredAbsolute}>
+                          <LinearGradient 
+                            style={styles.helpPopup}
+                            colors={[linearColor, '#f4f4f4']}
+                            start={{ x: 0, y: 0 }}
+                            end={{ x: 1, y: 1 }}
+                          >
+                            <Text style={styles.getStartedText}>{`Call a friend, text your family!\nHIGHER IS BETTER`}</Text>
+                          </LinearGradient>
+                        </TouchableOpacity>}
                     </View>
                     <ContactCounter name="digital"/>
                   </View>
@@ -106,26 +135,53 @@ const styles = StyleSheet.create({
     height: '47%',
     position: 'relative',
   },
+  centeredAbsolute: {
+    position: 'absolute', 
+    marginTop: '2.3%',
+    height: '100%',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  helpPopup: {
+    borderRadius: 17,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '90%',
+    width: '90%',
+    shadowOffset: {
+      width: 8,
+      height: 8,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 12,
+    elevation: 7,
+  },
   svgBox: {
-    position: "absolute",
+    zIndex: 2,
+    width: '10%',
+    // backgroundColor: 'red',
     left: '89.6%',
     right: '4.8%',
-    top: '15%',
-    bottom: '86.23%',
+    top: 10,
+    bottom: '90%',
   },
   getStartedContainer: {
     display: 'flex',
     maxWidth: '100%',
     justifyContent: 'space-between',
     alignItems: 'center',
-    // backgroundColor: 'red',
     flex: 1,
   },
   getStartedText: {
     fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
+    color: '#4d4d4d',
+    // backgroundColor: 'red',
     lineHeight: 20,
-    textAlign: 'center'
+    textAlign: 'center',
+    fontFamily: 'Roboto-Regular',
   },
   divider: {
     marginTop: 10
@@ -135,7 +191,8 @@ const styles = StyleSheet.create({
     color: '#7A7A7A',
     fontFamily: 'Raleway-Medium',
     textAlign: 'center',
-    marginTop: 15
+    marginTop: 15,
+    marginBottom: '8%',
   },
   counterText: {
     fontSize: 80,

@@ -90,8 +90,12 @@ export default class HistoryStats extends Component {
         let historyList = this.combineLists()
 
         const displayList = historyList.map( (data, idx) => {
+            let elementMargin = 0
+            if (idx === historyList.length - 1) {
+                elementMargin = 12
+            }
             return (
-                <View style={styles.statsContainer} key={idx}>
+                <View style={{...styles.statsContainer, marginBottom: elementMargin}} key={idx}>
                     <View style={styles.itemBox}>
                         <View>
                             <Text style={styles.dateText}>
@@ -119,23 +123,21 @@ export default class HistoryStats extends Component {
 
         const displayEmptyList = (
             <View style={styles.statsContainer}>
-                <Text style={styles.placeholderText}>--empty for now--</Text>
+                <View style={styles.itemBox}>
+                    <Text style={styles.placeholderText}>{`No data (yet)`}</Text>
+                </View>
             </View>
         )
 
         return (
             <View style={styles.historyContainer}>
                 <InsetShadow size={0.04}>
-                    <Text style={styles.titleText}>History</Text>
                     <ScrollView>                
-                        <SafeAreaView>
-                            <View>
-                                {historyList.length != 0 
-                                    ? displayList
-                                    : displayEmptyList
-                                }
-                            </View>
-                        </SafeAreaView>
+                        <Text style={styles.titleText}>History</Text>
+                        {historyList.length != 0 
+                            ? displayList
+                            : displayEmptyList
+                        }
                     </ScrollView>
                 </InsetShadow>
             </View>
@@ -144,9 +146,6 @@ export default class HistoryStats extends Component {
 }
 
 const styles = StyleSheet.create({
-    centered: {
-        // textAlign: 'center',
-    },
     historyContainer: {
         width: '90%',
         flex: 1,
@@ -160,16 +159,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '100%'
+        width: '100%',
+        paddingVertical: 5,
     },
     itemBox: {
         display: 'flex',
         flexDirection: 'row',
         backgroundColor: '#F0F0F0',
-        padding: 16,
+        paddingVertical: 13,
+        paddingHorizontal: 17,
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginVertical: 3,
+        marginTop: 3,
         width: '90%',
         borderRadius: 19,
         shadowColor: 'rgba(0, 0, 0, 0.25)',
@@ -179,12 +180,12 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.39,
         shadowRadius: 8.30,
-        elevation: 13
+        elevation: 7,
     },
     titleText: {
         fontSize: 24,
-        marginTop: 10,
-        marginBottom: 2,
+        marginTop: 13,
+        marginBottom: 4,
         fontFamily: 'Raleway-Medium',
         textAlign: 'center',
         color: '#626262'

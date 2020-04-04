@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 export default function InsetShadow(props) {
     return (
-        <View style={{flex: 1, maxHeight: '100%', maxWidth: '100%'}}>
+        <View style={{flex: 1, maxHeight: '100%', maxWidth: '100%' }}>
             <LinearGradient
                 style={styles.gradient}
                 locations={[0, 0.03]}

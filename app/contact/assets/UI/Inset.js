@@ -17,8 +17,8 @@ export default function Inset(props) {
 
 const styles = StyleSheet.create({
     inset: {
-        width: 44,
-        height: 44,
+        width: 50,
+        height: 50,
         borderRadius: 13,
         overflow: 'hidden',
         display: 'flex',
