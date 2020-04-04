@@ -6,6 +6,7 @@ import * as WebBrowser from 'expo-web-browser';
 import PlusIcon from '../assets/icons/plus.svg'
 import MinusIcon from '../assets/icons/minus.svg'
 import { MonoText } from './StyledText';
+import ChooseSVG from '../assets/icons/SVG'
 
 let width = Dimensions.get('window').width; //full width
 
@@ -25,15 +26,17 @@ export default class ContactCounter extends Component {
         return (
           
             <View style={styles.buttonGroup}>
-                <MinusIcon
-                  style={styles.icon}
-                  onPress= {() => this.handleDecrease()}
-                />
+                <TouchableOpacity onPress={() => this.handleDecrease()} activeOpacity={0.9}>
+                  <ChooseSVG name='minus'/>
+                </TouchableOpacity>
                 <Text style={dynamic_styles}>{this.state.count}</Text>
-                <PlusIcon
+                <TouchableOpacity onPress={() => this.handleIncrease()} activeOpacity={0.9}>
+                  <ChooseSVG name='plus'/>
+                </TouchableOpacity>
+                {/* <PlusIcon
                   style={styles.icon} 
                   onPress= {() => this.handleIncrease()}
-                />
+                /> */}
             </View>
         );
     }
@@ -42,13 +45,13 @@ export default class ContactCounter extends Component {
         this._retrieveData()
     }
 
-    handleDecrease() {
+    handleDecrease = () => {
         if (this.state.count > 0){
           this.setState({count: this.state.count - 1 }, this.storeCount)
         }
     }
  
-    handleIncrease() {
+    handleIncrease = () => {
         this.setState({count: this.state.count + 1 }, this.storeCount)
     }
 

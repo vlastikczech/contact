@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import Svg, { 
   Circle, Ellipse, G, TSpan, TextPath, Path, Polygon, Polyline, Line, Rect, Use, Image, Symbol, Defs, LinearGradient, RadialGradient, Stop, ClipPath, Pattern, Mask 
 } from 'react-native-svg'
@@ -104,6 +104,42 @@ const HelpIcon = (props) => (
     </View>
 )
 
+const PlusIcon = (props) => (
+    <View style={styles.icon}>
+        <Svg viewBox="0 0 95 95" width={80} height={80}>
+            <Path
+                d="M47.5 0C21.3074 0 0 21.3074 0 47.5C0 73.6926 21.3074 95 47.5 95C73.6926 95 95 73.6926 95 47.5C95 21.3074 73.6926 0 47.5 0ZM68.2812 51.4581H51.4581V68.2812C51.4581 70.4665 49.6852 72.2393 47.5 72.2393C45.3148 72.2393 43.5419 70.4665 43.5419 68.2812V51.4581H26.7188C24.5335 51.4581 22.7607 49.6852 22.7607 47.5C22.7607 45.3148 24.5335 43.5419 26.7188 43.5419H43.5419V26.7188C43.5419 24.5335 45.3148 22.7607 47.5 22.7607C49.6852 22.7607 51.4581 24.5335 51.4581 26.7188V43.5419H68.2812C70.4665 43.5419 72.2393 45.3148 72.2393 47.5C72.2393 49.6852 70.4665 51.4581 68.2812 51.4581Z"
+                fill="url(#paint0_linear)"
+            />
+            <Defs>
+                <LinearGradient id="paint0_linear" x1="5.5" y1="-1.13766e-06" x2="65" y2="47" gradientUnits="userSpaceOnUse">
+                    <Stop stopColor="#DBDBDB"/>
+                    <Stop offset="1" stopColor="white"/>
+                </LinearGradient>
+            </Defs>
+        </Svg>
+    </View>
+)
+
+const MinusIcon = (props) => (
+    <View style={styles.icon}>
+        <Svg viewBox="0 0 95 95" width={80} height={80}>
+            <Path
+                d="M47.5 0C21.3074 0 0 21.3074 0 47.5C0 73.6926 21.3074 95 47.5 95C73.6926 95 95 73.6926 95 47.5C95 21.3074 73.6926 0 47.5 0ZM68.2812 51.4581H26.7188C24.5335 51.4581 22.7607 49.6852 22.7607 47.5C22.7607 45.3148 24.5335 43.5419 26.7188 43.5419H68.2812C70.4665 43.5419 72.2393 45.3148 72.2393 47.5C72.2393 49.6852 70.4665 51.4581 68.2812 51.4581Z"
+                fill="url(#paint0_linear)"
+            />
+            <LinearGradient 
+                id="paint0_linear" 
+                x1="63.5" y1="47" x2="-14.5" y2="1.33138e-06" 
+                gradientUnits="userSpaceOnUse"
+                >
+                <Stop stopColor="white"/>
+                <Stop offset="1" stopColor="#DBDBDB"/>
+            </LinearGradient>
+        </Svg>
+    </View>
+)
+
 export default function ChooseSVG(props) {
     if (props.name === 'stats') {
         return <StatsIcon color={props.color}/>
@@ -117,4 +153,25 @@ export default function ChooseSVG(props) {
     else if (props.name === 'help') {
         return <HelpIcon color={props.color} fill={props.fill}/>
     }
+    else if (props.name === 'plus') {
+        return <PlusIcon/>
+    }
+    else if (props.name === 'minus') {
+        return <MinusIcon/>
+    }
 }
+
+const styles = StyleSheet.create({
+    icon: {
+        borderRadius: 50,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 5,
+        },
+        shadowOpacity: 0.36,
+        shadowRadius: 6.68,
+        elevation: 6,
+        zIndex: 3
+      },
+})

@@ -18,7 +18,7 @@ export default class HomeScreen extends Component {
     super(props);
     this.state = {
       modalVisible: false,
-      humanHelp: true,
+      humanHelp: false,
       digitalHelp: false,
     };
     // this.setModalVisible = this.setModalVisible.bind(this)
@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
   counterBox: {
     height: '47%',
     position: 'relative',
+    width: '100%',
   },
   centeredAbsolute: {
     position: 'absolute', 

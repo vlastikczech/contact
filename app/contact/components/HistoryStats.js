@@ -171,6 +171,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginTop: 3,
+        marginHorizontal: 'auto',
         width: '90%',
         borderRadius: 19,
         shadowColor: 'rgba(0, 0, 0, 0.25)',
@@ -195,7 +196,9 @@ const styles = StyleSheet.create({
         color: '#989898'
     },
     placeholderText: {
-        fontSize: 16
+        fontSize: 24,
+        color: '#989898',
+        paddingVertical: 7,
     },
     countContainer: {
         flexDirection: 'row'
