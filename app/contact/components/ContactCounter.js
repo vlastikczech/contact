@@ -1,10 +1,14 @@
 import React, { useState, useEffect, setState, Component } from 'react';
-import { Image, Platform, StyleSheet,TouchableOpacity, View, AsyncStorage } from 'react-native';
+import { Image, Platform, StyleSheet,TouchableOpacity, View, AsyncStorage, Dimensions } from 'react-native';
 import { Tooltip, Text, Button, Icon } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
-
+import PlusIcon from '../assets/icons/plus.svg'
+import MinusIcon from '../assets/icons/minus.svg'
 import { MonoText } from './StyledText';
+import ChooseSVG from '../assets/icons/SVG'
+
+let width = Dimensions.get('window').width; //full width
 
 export default class ContactCounter extends Component {
     state = {
@@ -20,10 +24,19 @@ export default class ContactCounter extends Component {
           dynamic_styles.push(styles.green)
         }
         return (
+          
             <View style={styles.buttonGroup}>
-                <Icon name='minus-circle' type='font-awesome' size={110} onPress={() => this.handleDecrease()}/>
+                <TouchableOpacity onPress={() => this.handleDecrease()} activeOpacity={0.9}>
+                  <ChooseSVG name='minus'/>
+                </TouchableOpacity>
                 <Text style={dynamic_styles}>{this.state.count}</Text>
-                <Icon name='plus-circle' type='font-awesome' size={110} onPress={() => this.handleIncrease()}/>
+                <TouchableOpacity onPress={() => this.handleIncrease()} activeOpacity={0.9}>
+                  <ChooseSVG name='plus'/>
+                </TouchableOpacity>
+                {/* <PlusIcon
+                  style={styles.icon} 
+                  onPress= {() => this.handleIncrease()}
+                /> */}
             </View>
         );
     }
@@ -32,13 +45,13 @@ export default class ContactCounter extends Component {
         this._retrieveData()
     }
 
-    handleDecrease() {
+    handleDecrease = () => {
         if (this.state.count > 0){
           this.setState({count: this.state.count - 1 }, this.storeCount)
         }
     }
  
-    handleIncrease() {
+    handleIncrease = () => {
         this.setState({count: this.state.count + 1 }, this.storeCount)
     }
 
@@ -78,20 +91,33 @@ export default class ContactCounter extends Component {
 
 const styles = StyleSheet.create({
     counterText: {
-        fontSize: 80,
-        marginHorizontal: 15
+        fontSize: 60,
+        textAlign: 'center',
+        width: '50%',
       },
     red: {
-      color: '#ed0000'
+      color: '#CF3150'
     },
     green: {
-      color: '#14ed00'
+      color: '#25BE9A'
+    },
+    icon: {
+      borderRadius: 50,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 5,
+      },
+      shadowOpacity: 0.36,
+      shadowRadius: 6.68,
+      elevation: 6,
     },
     buttonGroup: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 20
+        marginTop: 20,
+        paddingHorizontal: 30,
       }
 });
