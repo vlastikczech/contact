@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import moment from 'moment';
 import { View, AsyncStorage, Text, StyleSheet, SafeAreaView, ScrollView} from 'react-native'
+import InsetShadow from '../assets/UI/InsetShadow';
+import Inset from '../assets/UI/Inset';
 
 export default class HistoryStats extends Component {
     state = {
@@ -68,7 +70,7 @@ export default class HistoryStats extends Component {
 
         // sorts the list
         newList.sort(function(a, b) { 
-            return a.date < b.date;
+            return a.date[0] > b.date[0];
         })
 
         // Remove first item of array
@@ -88,20 +90,32 @@ export default class HistoryStats extends Component {
         let historyList = this.combineLists()
 
         const displayList = historyList.map( (data, idx) => {
+            let elementMargin = 0
+            if (idx === historyList.length - 1) {
+                elementMargin = 12
+            }
             return (
-                <View style={styles.statsContainer} key={idx}>
-                    <View>
-                        <Text style={styles.dateText}>{data.date}</Text>
-                    </View>
-                
-                    <View style={styles.countContainer}>
-                        <Text style={styles.humanText}>
-                            {data.inPersonCount}
-                        </Text>
-                        <View style={styles.verticalHr}/>
-                        <Text style={styles.digitalText}>
-                            {data.digitalCount}
-                        </Text>
+                <View style={{...styles.statsContainer, marginBottom: elementMargin}} key={idx}>
+                    <View style={styles.itemBox}>
+                        <View>
+                            <Text style={styles.dateText}>
+                                {data.date}
+                            </Text>
+                        </View>
+                    
+                        <View style={styles.countContainer}>
+                            <Inset>
+                                <Text style={styles.humanText}>
+                                    {data.inPersonCount}
+                                </Text>
+                            </Inset>
+                            <View style={styles.horizontalSpace}/>
+                            <Inset>
+                                <Text style={styles.digitalText}>
+                                    {data.digitalCount}
+                                </Text>
+                            </Inset>
+                        </View>
                     </View>
                 </View>
             )
@@ -109,71 +123,99 @@ export default class HistoryStats extends Component {
 
         const displayEmptyList = (
             <View style={styles.statsContainer}>
-                <Text style={styles.placeholderText}>--empty for now--</Text>
+                <View style={styles.itemBox}>
+                    <Text style={styles.placeholderText}>{`No data (yet)`}</Text>
+                </View>
             </View>
         )
 
         return (
-            <View>
-            <Text style={styles.titleText}>History</Text>
-            <ScrollView>                
-                <SafeAreaView>
-                    <View>
-                           {historyList.length != 0 
+            <View style={styles.historyContainer}>
+                <InsetShadow size={0.04}>
+                    <ScrollView>                
+                        <Text style={styles.titleText}>History</Text>
+                        {historyList.length != 0 
                             ? displayList
                             : displayEmptyList
-                           }
-                    </View>
-                </SafeAreaView>
-            </ScrollView>
+                        }
+                    </ScrollView>
+                </InsetShadow>
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    historyContainer: {
+        width: '90%',
+        flex: 1,
+        marginTop: 20,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        textAlign: 'center',
+    },
     statsContainer: {
-        borderBottomWidth: 1,
-        borderColor: 'rgba(0, 0, 0, 0.12)',
-        padding: 16,
         display: 'flex',
         flexDirection: 'row',
-        backgroundColor: 'rgb(255, 255, 255)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        paddingVertical: 5,
+    },
+    itemBox: {
+        display: 'flex',
+        flexDirection: 'row',
+        backgroundColor: '#F0F0F0',
+        paddingVertical: 13,
+        paddingHorizontal: 17,
         justifyContent: 'space-between',
-        width: '100%'
+        alignItems: 'center',
+        marginTop: 3,
+        marginHorizontal: 'auto',
+        width: '90%',
+        borderRadius: 19,
+        shadowColor: 'rgba(0, 0, 0, 0.25)',
+        shadowOffset: {
+            width: 0,
+            height: 6,
+        },
+        shadowOpacity: 0.39,
+        shadowRadius: 8.30,
+        elevation: 7,
     },
     titleText: {
-        fontSize: 30,
-        marginLeft: 16,
-        marginTop: 10,
-        marginBottom: 2
+        fontSize: 24,
+        marginTop: 13,
+        marginBottom: 4,
+        fontFamily: 'Raleway-Medium',
+        textAlign: 'center',
+        color: '#626262'
     },
     dateText: {
-        fontSize: 24
+        fontSize: 24,
+        color: '#989898'
     },
     placeholderText: {
-        fontSize: 16
+        fontSize: 24,
+        color: '#989898',
+        paddingVertical: 7,
     },
     countContainer: {
-        flexDirection: 'row',
-        marginRight: 20,
+        flexDirection: 'row'
     },
     humanText: {
         fontSize: 24,
-        color: '#ed0000',
+        color: '#D03251',
         width: 50,
         textAlign: 'center'
     },
     digitalText: {
         fontSize: 24,
-        color: '#14ed00',
+        color: '#26BF9B',
         width: 50,
         textAlign: 'center'
     },
-    verticalHr: {
-        borderLeftColor: '#D3D3D3',
-        borderLeftWidth: 1,
-        opacity: .7,
-        height: '100%',
+    horizontalSpace: {
+        marginHorizontal: 5
     }
 })

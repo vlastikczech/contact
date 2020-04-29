@@ -62,7 +62,7 @@ export default class Reminders extends Component {
             android: // (optional) (object) — notification configuration specific to Android.
             {
               sound: true, // (optional) (boolean) — if true, play a sound. Default: false.
-              icon: '../assets/images/icon.png',
+              icon: '../assets/images/P31_Circle.png',
               //color (optional) (string) — color of the notification icon in notification drawer.
               priority: 'high', // (optional) (min | low | high | max) — android may present notifications according to the priority, for example a high priority notification will likely to be shown as a heads-up notification.
               sticky: false, // (optional) (boolean) — if true, the notification will be sticky and not dismissable by user. The notification must be programmatically dismissed. Default: false.
